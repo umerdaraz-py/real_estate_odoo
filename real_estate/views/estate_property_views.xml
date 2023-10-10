@@ -1,0 +1,129 @@
+<odoo>
+    <record id="estate_property_tree" model="ir.ui.view">
+        <field name="name">estate.property.tree</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <tree string="Properties">
+                <field name="name"/>
+                <field name="postcode"/>
+                <field name="bedrooms"/>
+                <field name="living_area"/>
+                <field name="expected_price"/>
+                <field name="selling_price"/>
+                <field name="date_availability"/>
+                <!--                <field name="property_type_id"/>-->
+                <field name="tag_ids" widget="many2many_tags" string="Tags"/>
+            </tree>
+        </field>
+    </record>
+    <record id="estate_property_form" model="ir.ui.view">
+        <field name="name">estate.property.form</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="make_property_sold" type="object" state="new,received,accepted" class="oe_highlight"
+                            string="Sold"/>
+                    <button name="make_property_cancel" type="object" state="new,received,accepted" class="oe_highlight"
+                            string="Cancel"/>
+<!--                    <field name="state" widget="statusbar" statusbar_visible="new,received,accepted,sold"/>-->
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <field name="tag_ids" widget="many2many_tags"/>
+                    <group>
+                        <group>
+                            <field name="postcode"/>
+                            <field name="date_availability"/>
+                            <!--                            <field name="property_type_id"/>-->
+                        </group>
+                        <group>
+                            <field name="best_price"/>
+                            <field name="expected_price"/>
+                            <field name="selling_price"/>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <!--                                 <field name="description"/> -->
+                                <group>
+                                    <field name="bedrooms"/>
+                                    <field name="living_area"/>
+                                    <field name="facades"/>
+                                    <field name="garden"/>
+                                    <field name="garden_area"/>
+                                    <field name="garden_orientation"/>
+                                    <field name="total_area"/>
+                                    <field name="state"/>
+                                    <!--                                    <field name="property_type_id"/>-->
+                                </group>
+                            </page>
+                            <page string="Offers" name="offer">
+                                <field name="offer_ids">
+                                    <tree>
+                                        <field name="price"/>
+                                        <field name="partner_id"/>
+                                        <field name="validity"/>
+                                        <field name="date_deadline"/>
+                                        <button name="make_accept" type="object" icon="fa-check"/>
+                                        <button name="make_refuse" type="object" icon="fa-times"/>
+                                        <field name="status"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="price"/>
+                                            <field name="partner_id"/>
+                                            <field name="validity"/>
+                                            <field name="date_deadline"/>
+                                            <field name="status"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Other Info">
+                                <group>
+                                    <field name="salesman_id"/>
+                                    <field name="buyer_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="estate_property_search" model="ir.ui.view">
+        <field name="name">estate.property.search</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="postcode"/>
+                <field name="expected_price"/>
+                <field name="bedrooms"/>
+                <field name="living_area"/>
+                <field name="facades"/>
+                <!--                <field name="property_type_id"/>-->
+                <filter name="filter_new" string="New" domain="[('state', '=', 'new')]"/>
+                <filter name="filter_offer_received" string="Offer Received"
+                        domain="[('state', '=', 'offer received')]"/>
+                <group expand="0" name="Group By">
+                    <filter string="Postcode" name="group_by_postcode" context="{'group_by': 'postcode'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="estate_property_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="estate_property_types_action" model="ir.actions.act_window">
+        <field name="name">Property Types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">estate.property.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

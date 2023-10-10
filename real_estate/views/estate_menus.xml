@@ -1,0 +1,25 @@
+<odoo>
+    <menuitem id="estate_root"
+              name="Real Estate"/>
+    <menuitem id="estate_advertisement"
+              name="Advertisement"
+              parent="estate_root"/>
+    <menuitem id="estate_property"
+              name="Properties"
+              parent="estate_advertisement"
+              action="estate_property_action"/>
+    <menuitem id="property_types_setting"
+              name="Setting"
+              parent="estate_root"/>
+    <menuitem id="property_types"
+              name="Property Types"
+              parent="property_types_setting"
+              action="estate_property_types_action"/>
+
+    <!--     <record id="estate_property_types_action" model="ir.actions.act_window"> -->
+    <!--         <field name="name">Property Types</field> -->
+    <!--         <field name="type">ir.actions.act_window</field> -->
+    <!--         <field name="res_model">estate.property.type</field> -->
+    <!--         <field name="view_mode">tree,form</field> -->
+    <!--     </record> -->
+</odoo>
