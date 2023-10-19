@@ -1,7 +1,7 @@
 # real_estate_odoo
-**Odoo Pre-Internship Assignment
+**Odoo
 **
-This repo is my solution for Odoo Pre-Internship Assignment using Odoo 16
+This repo is my solution for Odoo Project using Odoo 16
 
 The Real Estate Advertisement module That includes:
 
